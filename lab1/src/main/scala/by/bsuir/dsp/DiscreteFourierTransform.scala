@@ -5,16 +5,27 @@ import breeze.numerics._
 
 import scala.math.Pi
 
-object DiscreteFourierTransform {
+class DiscreteFourierTransform {
+  private var _statistic = 0
 
-  def dft(xs: Seq[Double]): Seq[Complex] = {
+  def dft(xs: Seq[Complex]): Seq[Complex] = {
     xs.indices.map(i => {
-      val precize = xs.indices
+      _statistic += xs.size * xs.size // multiplications
+      _statistic += xs.size * (xs.size - 1) // additions
+      xs.indices
         .map(j => xs(j) * exp(-Complex.i * (2 * Pi / xs.size) * i * j))
         .sum
-      // TODO: do we need round?
-      Complex(round(precize.real), round(precize.imag))
     })
+  }
+  def inverseDft(xs: Seq[Complex]): Seq[Complex] = {
+    xs.indices.map(i => {
+      xs.indices
+        .map(j => xs(j) * exp(Complex.i * (2 * Pi / xs.size) * i * j))
+        .sum / xs.size
+    })
+  }
 
+  def statistic: Int = {
+    _statistic
   }
 }
