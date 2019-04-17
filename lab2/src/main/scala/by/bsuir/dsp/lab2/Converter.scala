@@ -21,9 +21,13 @@ class Converter {
   def correlation(xs1: Seq[Double], xs2: Seq[Double]): Seq[Double] = {
     (for (i <- xs1.indices) yield {
       var accum = 0.0
-      for (j <- i until xs1.size) {
+      for (j <- xs1.indices) {
         _statistic += 2
-        accum += xs1(xs1.size - j - 1) * xs2(j)
+        accum += xs1(j) * (if (j + i < xs1.size) {
+          xs2(i + j)
+        } else {
+          xs2(i + j - xs2.size)
+        })
       }
       accum
     }).map(Utils.roundTwoDecimal)

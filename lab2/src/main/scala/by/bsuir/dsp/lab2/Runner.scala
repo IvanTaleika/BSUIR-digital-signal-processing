@@ -3,14 +3,13 @@ package by.bsuir.dsp.lab2
 import breeze.numerics.{cos, sin}
 import breeze.plot.{Figure, plot}
 
-// TODO: statistic recalculate
 object Runner extends App {
   val N = 8
-  val points = (0 until 8).map(_ * 2 * math.Pi / N)
-  val xs1 = (0 until 8)
+  val points = (0 until N).map(_ * 2 * math.Pi / N)
+  val xs1 = (0 until N)
     .map(i => cos(i * 2 * math.Pi / N))
-  val xs2 = (0 until 8)
-    .map(i => sin(i * 2 * math.Pi / N))
+  val xs2 = (0 until N)
+    .map(i => sin(3 * i * 2 * math.Pi / N))
 
   println(s"cos(x) $xs1")
   println(s"sin(x) $xs2")
@@ -48,6 +47,6 @@ object Runner extends App {
   p5 += plot(points, fastCorrelation, '-')
   p5.title = "Fast correlation"
 
-  println(s"Number of operation in FFT: ${converter.statistic}")
-  println(s"Number of operation in DFT: ${fastConverter.statistic}")
+  println(s"Number of operation in DFT: ${converter.statistic}")
+  println(s"Number of operation in FFT: ${fastConverter.statistic}")
 }
