@@ -47,7 +47,6 @@ class FastFourierTransform {
         for (i <- 0 until n / 2) {
           ans = ans.updated(i, even(i) + w * odd(i))
           ans = ans.updated(i + n / 2, even(i) - w * odd(i))
-          _statistic += 2
           w *= wn
         }
         ans
