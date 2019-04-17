@@ -4,12 +4,12 @@ import breeze.numerics.{cos, sin}
 import breeze.plot.{Figure, plot}
 
 object Runner extends App {
-  val N = 8
+  val N = 16
   val points = (0 until N).map(_ * 2 * math.Pi / N)
   val xs1 = (0 until N)
     .map(i => cos(i * 2 * math.Pi / N))
   val xs2 = (0 until N)
-    .map(i => sin(3 * i * 2 * math.Pi / N))
+    .map(i => sin(i * 2 * math.Pi / N))
 
   println(s"cos(x) $xs1")
   println(s"sin(x) $xs2")
