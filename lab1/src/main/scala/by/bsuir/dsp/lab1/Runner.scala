@@ -1,15 +1,16 @@
-package by.bsuir.dsp
+package by.bsuir.dsp.lab1
 
 import breeze.math.Complex
-import breeze.numerics._
-import breeze.plot._
+import breeze.numerics.{cos, sin, tan}
+import breeze.plot.{Figure, plot}
 
 // y=cos(x)+sin(x) БПФ с прореживанием по времени 8
 object Runner extends App {
   val N = 8
   val points = (0 until 8).map(_ * 2 * math.Pi / N)
   val data = (0 until 8)
-    .map(i => Complex(cos(i * 2 * math.Pi / N) + sin(i * 2 * math.Pi / N), 0))
+    .map(i => cos(i * 2 * math.Pi / N) + sin(i * 2 * math.Pi / N))
+    .map(Complex(_, 0))
 
   println(s"source $data")
   val fast = new FastFourierTransform
@@ -31,9 +32,9 @@ object Runner extends App {
   val p3 = f.subplot(3, 3, 3)
   p3 += plot(points, dftData.map(_.abs), '-')
   p3.title = "DFT magnitude"
-//  val p4 = f.subplot(3, 3, 4)
-//  p4 += plot(points, dftData.map(n => tan(n.imag / n.real)), '-')
-//  p4.title = "DFT phase"
+  val p4 = f.subplot(3, 3, 4)
+  p4 += plot(points, dftData.map(n => tan(n.imag / n.real)), '+')
+  p4.title = "DFT phase"
   val p5 = f.subplot(3, 3, 5)
   p5 += plot(points, inverseDft.map(_.real), '-')
   p5.title = "inverse DFT"
@@ -41,11 +42,13 @@ object Runner extends App {
   val p6 = f.subplot(3, 3, 6)
   p6 += plot(points, fftData.map(_.abs), '-')
   p6.title = "FFT magnitude"
-//  val p7 = f.subplot(3, 3, 7)
-//  p7 += plot(points, fftData.map(n => tan(n.imag / n.real)), '-')
-//  p7.title = "FFT phase"
+  val p7 = f.subplot(3, 3, 7)
+  p7 += plot(points, fftData.map(n => tan(n.imag / n.real)), '+')
+  p7.title = "FFT phase"
   val p8 = f.subplot(3, 3, 8)
-  p8 += plot(points,  inverseFft.map(_.real), '-')
+  p8 += plot(points, inverseFft.map(_.real), '-')
   p8.title = "inverse FFT"
 
+  println(s"Number of operation in FFT: ${fast.statistic}")
+  println(s"Number of operation in DFT: ${discrete.statistic}")
 }
