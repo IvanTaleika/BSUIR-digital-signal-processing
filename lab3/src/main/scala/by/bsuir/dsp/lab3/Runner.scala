@@ -1,5 +1,6 @@
 package by.bsuir.dsp.lab3
 
+import breeze.linalg._
 import breeze.numerics._
 import breeze.plot.{Figure, plot}
 

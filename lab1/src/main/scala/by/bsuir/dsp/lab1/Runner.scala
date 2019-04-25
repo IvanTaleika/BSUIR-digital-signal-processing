@@ -9,7 +9,6 @@ object Runner extends App {
   val N = 8
   val points = (0 until N).map(_ * 2 * math.Pi / N)
   val data = (0 until N)
-//    .map(i => cos(4 * 3 * i * 2 * math.Pi / N) + sin(i * 2 * math.Pi / N))
     .map(i => cos(i * 2 * math.Pi / N) + sin(i * 2 * math.Pi / N))
     .map(Complex(_, 0))
 

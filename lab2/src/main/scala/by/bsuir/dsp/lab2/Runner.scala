@@ -4,7 +4,7 @@ import breeze.numerics.{cos, sin}
 import breeze.plot.{Figure, plot}
 
 object Runner extends App {
-  val N = 16
+  val N = 8
   val points = (0 until N).map(_ * 2 * math.Pi / N)
   val xs1 = (0 until N)
     .map(i => cos(i * 2 * math.Pi / N))
