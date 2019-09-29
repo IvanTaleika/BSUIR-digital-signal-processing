@@ -12,3 +12,6 @@
 # Maven
 log/
 target/
+
+# Scala
+*.sc
