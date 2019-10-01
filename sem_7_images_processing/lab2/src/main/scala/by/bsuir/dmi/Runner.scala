@@ -16,8 +16,7 @@ object Runner extends App {
         s.map(_ -> clusterIndex).toMap
     }
     .reduce(_ ++ _)
-  val classifiedImage = binImage.map {
-    case (x, y, p) =>
+  val classifiedImage = binImage.map {    case (x, y, p) =>
       classifiedPixels.get((x, y)) match {
         case Some(0) => Pixel(255, 0, 0, 255)
         case Some(1) => Pixel(0, 255, 0, 255)
