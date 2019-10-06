@@ -32,7 +32,7 @@ object ImageProcessor {
   }
 
   def binarize(i: Image) = i.map { (_, _, p) =>
-    if (rgbSum(p) / 3 > 180) {
+    if (rgbSum(p) / 3 > 220) {
       Pixel(Color.White)
     } else {
       Pixel(Color.Black)

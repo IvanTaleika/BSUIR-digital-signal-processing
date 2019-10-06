@@ -6,4 +6,7 @@ case class Attributes(area: Double, perimeter: Double, centerMass: Double, elong
     Attributes(area - a.area, perimeter - a.perimeter, centerMass - a.centerMass, elongation - a.elongation)
   def +(a: Attributes) =
     Attributes(area + a.area, perimeter + a.perimeter, centerMass + a.centerMass, elongation + a.elongation)
+
+  override def toString: String =
+    s"Attributes(area=$area, perimeter=$perimeter, center_mass=$centerMass, elongation=$elongation)"
 }
