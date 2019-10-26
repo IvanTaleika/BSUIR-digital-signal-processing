@@ -42,7 +42,7 @@ object MultilayerNet {
 
 }
 
-class MultilayerNetModel(maxError: Double = 0.05, speedA: Double = 0.01, speedB: Double = 0.5) {
+class MultilayerNetModel(maxError: Double = 0.05, speedA: Double = 0.01, speedB: Double = 0.05) {
 
   import MultilayerNet._
 

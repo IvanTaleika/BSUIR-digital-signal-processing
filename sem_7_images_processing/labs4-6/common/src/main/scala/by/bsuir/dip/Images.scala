@@ -11,7 +11,7 @@ object Images {
     DenseVector[Double](
       im.pixels
         .map {
-          case p if p.toColor == Color.White => 0d
+          case p if p.toColor == Color.White => -1d
           case p if p.toColor == Color.Black => 1d
         })
 
