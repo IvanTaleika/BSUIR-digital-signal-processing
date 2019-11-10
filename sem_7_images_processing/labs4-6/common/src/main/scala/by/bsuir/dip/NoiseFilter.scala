@@ -26,18 +26,22 @@ object NoiseFilter {
   }
 
   def createSample(images: Seq[(String, Image)] = Images.ImagesWithNames,
-                          noisePercents: Seq[Double] = Seq(0.2, 0.35, 0.5),
-                          imageHeight: Int = 6,
-                          imageWidth: Int = 6) = images.flatMap {
-    case (name, image) =>
-      noisePercents.map {
-        noise =>
-          val noiseImage = addNoise(image, noise, imageHeight, imageWidth)
-          val imageFolder = s"images/$name/"
-          val imageName = s"${name}_${noise}.png"
-          Files.createDirectories(Paths.get(imageFolder))
-          noiseImage.forWriter(ImageWriter.default).write(imageFolder + imageName)
-          imageName -> noiseImage
+                   noisePercents: Seq[Double] = Seq(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1d),
+                   imageHeight: Int = 6,
+                   imageWidth: Int = 6,
+                   n: Int = 1) = {
+    noisePercents.map { noise =>
+      noise -> images.flatMap {
+        case (name, image) =>
+          for (i <- 0 until n) yield {
+            val noiseImage = addNoise(image, noise, imageHeight, imageWidth)
+            val imageFolder = s"images/$name/"
+            val imageName = s"${name}_${noise}_$i.png"
+            Files.createDirectories(Paths.get(imageFolder))
+            noiseImage.forWriter(ImageWriter.default).write(imageFolder + imageName)
+            (imageName, noiseImage)
+          }
       }
+    }
   }
 }

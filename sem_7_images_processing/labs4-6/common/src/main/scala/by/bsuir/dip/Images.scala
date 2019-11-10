@@ -4,7 +4,7 @@ import breeze.linalg.DenseVector
 import com.sksamuel.scrimage.{Color, Image}
 
 object Images {
-  val Names = Seq("k" , "l", "o", "t", "u")
+  val Names = Seq("K", "L", "O", "T", "U")
   val ImagesWithNames = Names.map(n => n -> Image.fromResource(s"/$n.png"))
 
    def toWeightsVector(im: Image) = {

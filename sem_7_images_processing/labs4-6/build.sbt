@@ -10,3 +10,4 @@ lazy val lab4 = project.dependsOn(common)
 
 ThisBuild / libraryDependencies += "com.sksamuel.scrimage" %% "scrimage-core" % "2.1.8"
 ThisBuild / libraryDependencies += "org.scalanlp" %% "breeze" % "1.0"
+ThisBuild / libraryDependencies += "org.scalanlp" %% "breeze-viz" % "1.0"
