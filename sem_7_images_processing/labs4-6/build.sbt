@@ -6,7 +6,7 @@ scalaVersion := "2.12.10"
 
 lazy val common = project
 lazy val lab4 = project.dependsOn(common)
-//lazy val lab5 = project
+lazy val lab5 = project.dependsOn(common)
 
 ThisBuild / libraryDependencies += "com.sksamuel.scrimage" %% "scrimage-core" % "2.1.8"
 ThisBuild / libraryDependencies += "org.scalanlp" %% "breeze" % "1.0"

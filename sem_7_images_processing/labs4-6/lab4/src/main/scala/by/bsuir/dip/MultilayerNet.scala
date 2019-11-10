@@ -49,7 +49,7 @@ class MultilayerNetModel(maxError: Double = 0.05, speedA: Double = 0.01, speedB:
 
   private def isTrained(errors: Seq[DenseVector[Double]]): Boolean = errors.map(meanSquaredError).max < maxError
 
-  def train(data: Seq[(String, Image)], hideLayerSize: Int = -1) = {
+  def train(data: Seq[(String, Image)]) = {
     val inSize = data.head._2.pixels.length
     val outSize = data.length
     val hideSize = (2d * (inSize + outSize) / 3d).toInt
